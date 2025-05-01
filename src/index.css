@@ -1,107 +1,124 @@
-@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&family=Inter:wght@400;500;700;900&display=swap');
 
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Global styles and Shadcn UI variables */
+/* Define CSS Variables for Colors and Base Styles */
 @layer base {
   :root {
-    /* Terminal Specific Colors */
-    --terminal-bg: 222.2 84% 4.9%; /* Very Dark Blue/Black */
-    --terminal-fg: 210 40% 96.1%; /* Light Grey/Off-white */
-    --terminal-green: 120 100% 60%;  /* Bright Green */
-    --terminal-amber: 45 100% 50%; /* Bright Amber */
-    --terminal-cyan: 180 100% 50%;  /* Bright Cyan */
-    --terminal-magenta: 300 100% 50%; /* Bright Magenta */
-    --terminal-blue: 210 100% 60%; /* Bright Blue */
-    --terminal-red: 0 100% 60%; /* Bright Red */
+    /* Shadcn UI Default Theme Variables (Light Mode) */
+    --background: 0 0% 100%; /* White */
+    --foreground: 222.2 84% 4.9%; /* Dark Gray */
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 220, 65%, 11%; /* Default primary: Dark Blue */
+    --primary-foreground: 225, 27%, 88%; /* Default primary text: Light Gray */
+    --secondary: 210 40% 96.1%; /* Light Grayish Blue */
+    --secondary-foreground: 222.2 47.4% 11.2%; /* Dark Gray */
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%; /* Gray */
+    --accent: 258, 100%, 67%; /* Accent: Bright Purple */
+    --accent-foreground: 0 0% 100%; /* White Text on Accent */
+    --destructive: 0 84.2% 60.2%; /* Red */
+    --destructive-foreground: 0 0% 98%; /* Light Gray */
+    --border: 214.3 31.8% 91.4%; /* Light Gray */
+    --input: 214.3 31.8% 91.4%;
+    --ring: 220, 65%, 11%; /* Ring: Dark Blue */
+    --radius: 0.5rem; /* Default border radius */
 
-    /* Shadcn UI Theme Variables - Dark Mode (aligned with terminal) */
-    --background: 222.2 84% 4.9%; /* terminal-bg */
-    --foreground: 210 40% 96.1%; /* terminal-fg */
-
-    --card: 222.2 84% 4.9%; /* terminal-bg */
-    --card-foreground: 210 40% 96.1%; /* terminal-fg */
-
-    --popover: 222.2 84% 4.9%; /* terminal-bg */
-    --popover-foreground: 210 40% 96.1%; /* terminal-fg */
-
-    /* Primary as Terminal Green */
-    --primary: 120 100% 60%; /* terminal-green */
-    --primary-foreground: 222.2 47.4% 11.2%; /* Darker color for text on green */
-
-    /* Secondary as Terminal Amber */
-    --secondary: 45 100% 50%; /* terminal-amber */
-    --secondary-foreground: 222.2 47.4% 11.2%; /* Darker color for text on amber */
-
-    /* Muted slightly lighter than background */
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-
-    /* Accent as Terminal Cyan */
-    --accent: 180 100% 50%; /* terminal-cyan */
-    --accent-foreground: 222.2 47.4% 11.2%; /* Darker color for text on cyan */
-
-    /* Destructive as Terminal Red */
-    --destructive: 0 100% 60%; /* terminal-red */
-    --destructive-foreground: 210 40% 98%; /* Light text on red */
-
-    --border: 217.2 32.6% 17.5%; /* Slightly lighter grey */
-    --input: 217.2 32.6% 17.5%;  /* Same as border */
-    --ring: 120 100% 60%; /* Primary color (green) for focus rings */
-
-    --radius: 0.3rem; /* Slight border radius for components */
+    /* Portfolio Custom Color Variables */
+    --primary-dark-blue: 220, 65%, 11%;
+    --primary-teal: 163, 100%, 70%;
+    --primary-light-gray: 225, 27%, 88%;
+    --accent-purple: 258, 100%, 67%;
+    --accent-coral: 3, 100%, 72%;
   }
 
-  /* Light mode variables (Optional - can be defined if light mode is needed) */
-  /* .light { ... } */
+  .dark {
+    /* Shadcn UI Default Theme Variables (Dark Mode) */
+    --background: 220, 65%, 11%; /* Dark Blue */
+    --foreground: 225, 27%, 88%; /* Light Gray */
+    --card: 220, 65%, 11%;
+    --card-foreground: 225, 27%, 88%;
+    --popover: 220, 65%, 11%;
+    --popover-foreground: 225, 27%, 88%;
+    --primary: 163, 100%, 70%; /* Primary: Teal */
+    --primary-foreground: 220, 65%, 11%; /* Primary text: Dark Blue */
+    --secondary: 217.2 32.6% 17.5%; /* Darker Blue */
+    --secondary-foreground: 225, 27%, 88%; /* Light Gray */
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%; /* Gray */
+    --accent: 258, 100%, 67%; /* Accent: Bright Purple */
+    --accent-foreground: 0 0% 98%; /* Light Gray Text on Accent */
+    --destructive: 0 62.8% 30.6%; /* Dark Red */
+    --destructive-foreground: 0 0% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 163, 100%, 70%; /* Ring: Teal */
 
+     /* Ensure custom colors are defined for dark mode if they differ, */
+     /* otherwise they inherit from :root */
+     /* Example: If you wanted a different teal in dark mode */
+     /* --primary-teal: 160, 80%, 60%; */
+  }
+}
+
+/* Apply Base Styles */
+@layer base {
   * {
     @apply border-border; /* Default border color */
   }
-
-  html {
-      scroll-behavior: smooth; /* Smooth scrolling */
-  }
-
   body {
-    @apply bg-background text-foreground; /* Use defined variables */
-    @apply font-mono; /* Default to monospaced font */
-    min-height: 100vh;
-    overflow-x: hidden; /* Prevent horizontal scroll */
+    @apply bg-background text-foreground; /* Default background and text colors */
+    @apply font-sans; /* Use Poppins defined in Tailwind config */
+    font-feature-settings: "rlig" 1, "calt" 1; /* Enable common ligatures */
   }
 
-  /* Remove default margins/paddings */
-  body, h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-  dl, dd, ol, ul, figure, hr, fieldset, legend {
-      margin: 0;
-      padding: 0;
-  }
-
-    /* Headings */
+  /* Base Typographic Styles */
   h1, h2, h3, h4, h5, h6 {
-    @apply font-sans font-semibold text-foreground; /* Use sans-serif for headings if desired */
+    @apply font-semibold tracking-tight;
+    color: hsl(var(--foreground)); /* Use foreground color */
+  }
+
+  h1 {
+    @apply text-4xl lg:text-5xl;
+     /* Example using custom color: @apply text-primary-teal; */
+  }
+  h2 {
+    @apply text-3xl lg:text-4xl;
+     /* Example using custom color: @apply text-accent-purple; */
+  }
+  h3 {
+    @apply text-2xl lg:text-3xl;
+  }
+  h4 {
+    @apply text-xl lg:text-2xl;
+  }
+  h5 {
+    @apply text-lg lg:text-xl;
+  }
+  h6 {
+    @apply text-base lg:text-lg;
+  }
+
+  p {
+    @apply leading-7 [&:not(:first-child)]:mt-6; /* Base paragraph style */
+     color: hsl(var(--muted-foreground)); /* Use muted foreground for less emphasis */
+  }
+
+  a {
+     @apply text-primary underline-offset-4 hover:underline; /* Use primary color for links */
+     /* Example using accent: @apply text-accent-coral; */
+  }
+
+  /* Ensure smooth scrolling */
+  html {
+    scroll-behavior: smooth;
   }
 }
-
-/* Custom component layer styles if needed */
-@layer components {
-  /* Example: .btn class if not using Shadcn/Magic buttons */
-  /* .btn {
-      @apply px-4 py-2 rounded bg-primary text-primary-foreground;
-  } */
-}
-
-/* Custom utility classes if needed */
-@layer utilities {
-  /* Example: .text-balance for text wrapping */
-   .text-balance {
-      text-wrap: balance;
-   }
-}
-
 @keyframes gradientBG {
 	0% {
 		background-position: 0% 50%;

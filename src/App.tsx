@@ -1,37 +1,57 @@
 
 import React from 'react';
-import MainLayout from './components/layout/MainLayout';
-import Footer from './components/layout/Footer'; // Import the Footer component
-import { RetroGrid } from '@/components/magicui/retro-grid';
-import { SmoothCursor } from "@/components/magicui/smooth-cursor";
-import { cn } from "@/lib/utils";
+import Header from './components/header';
+import HeroSection from './components/hero-section';
+import SocialProofSection from './components/social-proof-section';
+import ProblemSolutionSection from './components/problem-solution-section';
+import BenefitsOfferSection from './components/benefits-offer-section';
+import DeepSocialProofLeadCaptureSection from './components/deep-social-proof-lead-capture-section';
+import FaqSection from './components/faq-section';
+import ClosingArgumentSection from './components/closing-argument-section';
+import Footer from './components/footer'; // Import Footer
+import { SmoothCursor } from '@/components/magicui/smooth-cursor';
 
 function App() {
   return (
-    <div className={cn(
-        "relative min-h-screen bg-background text-foreground font-mono",
-        "overflow-x-hidden" // Prevent horizontal overflow
-        )}>
-      {/* Background Grid */}
-      <RetroGrid className="fixed inset-0 z-0 opacity-15" />
+    <>
+      <SmoothCursor />
+      <Header />
+      <main>
 
-      {/* Smooth Cursor */}
-      <SmoothCursor
-          cursor={<div className="w-3 h-3 rounded-full bg-terminal-green mix-blend-difference pointer-events-none" />}
-        
-       />
+        {/* --- Hero Section --- */}
+        <HeroSection />
+        {/* --- End Hero Section --- */}
 
-      {/* Main Layout (contains Sidebar and MainContent) */}
-      {/* z-10 ensures layout is above the grid */}
-      <div className="relative z-10">
-        <MainLayout />
-      </div>
+        {/* --- Social Proof Section --- */}
+        <SocialProofSection />
+        {/* --- End Social Proof Section --- */}
 
-      {/* Footer Component */}
-      {/* z-20 ensures footer is above grid and potentially content, aligns with sidebar z-index */}
+        {/* --- Problem/Solution Section --- */}
+        <ProblemSolutionSection />
+        {/* --- End Problem/Solution Section --- */}
+
+        {/* --- Benefits & Offer Section --- */}
+        <BenefitsOfferSection />
+        {/* --- End Benefits & Offer Section --- */}
+
+         {/* --- Deep Social Proof & Lead Capture Section --- */}
+         <DeepSocialProofLeadCaptureSection />
+         {/* --- End Deep Social Proof & Lead Capture Section --- */}
+
+         {/* --- FAQ Section --- */}
+         <FaqSection />
+         {/* --- End FAQ Section --- */}
+
+         {/* --- Closing Argument Section --- */}
+         <ClosingArgumentSection />
+         {/* --- End Closing Argument Section --- */}
 
 
-    </div>
+
+      </main>
+
+       <Footer /> {/* Add Footer Here */}
+    </>
   );
 }
 
